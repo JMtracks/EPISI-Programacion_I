@@ -6,7 +6,7 @@ package jm_Class;
 
 /**
  * Clase Persona (CPersona)
- * @author JMTracks (Manrique Galvez 
+ * @author JMTracks (Manrique Galvez Ernesto Joel)
  */
 public class CPersona {
    private String DNI; //Debe ser anotado una sola vez. 
