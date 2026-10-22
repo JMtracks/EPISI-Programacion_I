@@ -12,6 +12,6 @@ public class CPersona {
    private String DNI;
    private String nombre;
    private int edad;
-   
+   private double saldo;
    
 }
