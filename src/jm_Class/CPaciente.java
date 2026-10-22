@@ -88,7 +88,7 @@ public class CPaciente {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fechaFormateada = (fecha_atencion != null) ? fecha_atencion.format(formatter) : "No registrada";
         
-        return "--- Datos del Paciente ---" +
+        return "Datos del Paciente" +
                "\nCódigo: " + codigo_p +
                "\nNombre: " + nombre +
                "\nRazón de Consulta: " + razon_consulta +
