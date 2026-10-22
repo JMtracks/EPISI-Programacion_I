@@ -29,9 +29,15 @@ public class CCita {
             this.estado = "En Reserva";
         }
 
-    public void confirmarCita() {
-        this.estado = "Completada";
+    public void confirmarCita() {this.estado = "Completada";}
+    
+    public void cancelarCita(LocalDate FechaActual){
+        if(FechaActual.isBefore(fecha)) this.estado = "Ausente";
     }
+    public void cancelarCita(){
+        this.estado = "Ausente";
+    }
+    
         public String getIdCita() {
             return idCita;
         }

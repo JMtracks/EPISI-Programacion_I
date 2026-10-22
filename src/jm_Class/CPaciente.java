@@ -71,6 +71,7 @@ public class CPaciente {
     }
 
     public void setN_atenciones(int n_atenciones) {
+        if(n_atenciones<0) throw new IllegalArgumentException("Las Atenciones deben ser Positivos");
         this.n_atenciones = n_atenciones;
     }
 

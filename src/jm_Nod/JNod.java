@@ -5,9 +5,9 @@
 package jm_Nod;
 
 /**
- *
+ * Clase PorDefecto
  * @author JMTracks
  */
 public class JNod {
-    
+   protected String id;
 }
