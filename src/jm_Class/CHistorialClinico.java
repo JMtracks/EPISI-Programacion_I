@@ -17,19 +17,19 @@ package jm_Class;
     private String tratamiento;
 
     public CHistorialClinico() {
-        this.codigoHistorial = "";
-        this.fechaApertura = "";
-        this.observacionesGenerales = "";
-        this.diagnostico = "";
-        this.tratamiento = "";
+        this.codigoHistorial = codigoHistorial;
+        this.fechaApertura = fechaApertura;
+        this.observacionesGenerales = observacionesGenerales;
+        this.diagnostico = diagnostico;
+        this.tratamiento = tratamiento;
     }
 
     public CHistorialClinico(String codigoHistorial, String fechaApertura) {
         setCodigoHistorial(codigoHistorial);
         setFechaApertura(fechaApertura);
-        this.observacionesGenerales = "";
-        this.diagnostico = "";
-        this.tratamiento = "";
+        this.observacionesGenerales = observacionesGenerales;
+        this.diagnostico = diagnostico;
+        this.tratamiento = tratamiento;
     }
 
     public CHistorialClinico(String codigoHistorial, String fechaApertura, String observacionesGenerales, String diagnostico, String tratamiento) {
