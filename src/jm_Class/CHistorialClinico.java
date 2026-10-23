@@ -133,8 +133,8 @@ package jm_Class;
         return d <= diasPorMes[m - 1];
     }
 
-    private boolean esBisiesto(int anio) {
-        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+    private boolean esBisiesto(int año) {
+        return (año % 4 == 0 && año % 100 != 0) || (año % 400 == 0);
     }
 
     private boolean esNumero(String texto) {
