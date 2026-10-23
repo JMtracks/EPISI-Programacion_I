@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 public class CCita {
     public class Cita {
     private String idCita;
-    //private Paciente paciente;
-    //private Personal fisioterapeuta;
     private LocalDate fecha;
     private LocalDateTime hora;
     private String tipoCita; 
