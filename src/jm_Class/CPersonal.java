@@ -6,7 +6,7 @@ package jm_Class;
 
 /**
  *
- * @author USer
+ * @author Marlon Gallarday Lara
  */
 public class CPersonal {
     
@@ -17,7 +17,6 @@ public class CPersonal {
     private String contraseña;
     private String horarioDisponibilidad;
 
-
     public CPersonal() {
         this.dni = dni;
         this.nombreCompleto = nombreCompleto;
@@ -26,7 +25,6 @@ public class CPersonal {
         this.contraseña = contraseña;
         this.horarioDisponibilidad = horarioDisponibilidad;
     }
-
     public CPersonal(String dni, String nombreCompleto, String rol, String usuario, String contrasena, String horarioDisponibilidad) {
         setDni(dni);
         setNombreCompleto(nombreCompleto);
@@ -35,23 +33,15 @@ public class CPersonal {
         setContraseña(contraseña);
         setHorarioDisponibilidad(horarioDisponibilidad);
     }
-
-
     public CPersonal(String dni, String nombreCompleto, String rol) {
         setDni(dni);
         setNombreCompleto(nombreCompleto);
         setRol(rol);
-        this.usuario = "pendiente";
-        this.contraseña = "123456";
-        this.horarioDisponibilidad = "Por asignar";
+     
     }
-
-    // 5. Métodos Getters y Setters con validación (Requisito Semana 3)
-    
     public String getDni() {
         return dni;
     }
-
     public void setDni(String dni) {
         if (dni != null && dni.length() == 8) {
             this.dni = dni;
@@ -63,12 +53,11 @@ public class CPersonal {
     public String getNombreCompleto() {
         return nombreCompleto;
     }
-
     public void setNombreCompleto(String nombreCompleto) {
         if (nombreCompleto != null && !nombreCompleto.trim().isEmpty()) {
             this.nombreCompleto = nombreCompleto;
         } else {
-             throw new IllegalArgumentException("Error: El nombre no puede estar vacío.");
+             throw new IllegalArgumentException("invalido el nombre no puede estar vacío.");
          }
     }
     public String getRol() {
@@ -86,39 +75,34 @@ public class CPersonal {
             throw new IllegalArgumentException( "Rol inválido. Debe ser Fisioterapeuta o Recepcionista");
         }
     }
-
     public String getUsuario() {
         return usuario;
     }
-
     public void setUsuario(String usuario) {
         if (usuario != null && !usuario.trim().isEmpty()) {
             this.usuario = usuario;
         } else {
-           throw new IllegalArgumentException("Error: El usuario no puede estar vacío.");
+           throw new IllegalArgumentException("invalido el usuario no puede estar vacío.");
                 }
     }
-
     public String getContraseña() {
         return contraseña;
     }
-
     public void setContraseña(String contraseña) {
                if (contraseña != null && contraseña.length() >= 6) {
             this.contraseña = contraseña;
         } else {
-            throw new IllegalArgumentException("Error: La contraseña debe tener al menos 6 caracteres.");
+            throw new IllegalArgumentException("invalido a contraseña debe tener al menos 6 caracteres.");
         }
     }
     public String getHorarioDisponibilidad() {
         return horarioDisponibilidad;
     }
-
     public void setHorarioDisponibilidad(String horarioDisponibilidad) {
         if (horarioDisponibilidad != null && !horarioDisponibilidad.trim().isEmpty()) {
             this.horarioDisponibilidad = horarioDisponibilidad;
         } else {
-            throw new IllegalArgumentException("Error: El horario no puede estar vacío.");
+            throw new IllegalArgumentException("invalido el horario no puede estar vacío.");
                     }
     }
     @Override
