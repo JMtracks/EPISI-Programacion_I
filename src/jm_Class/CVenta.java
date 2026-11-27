@@ -8,82 +8,68 @@ package jm_Class;
  *
  * @author LIDIA
  */
-public class CVenta {
- 
+public class CVenta extends CTransaccion {
     private String dniCliente;
-    private CInsumoFisioterapia producto; 
+    private CInsumoFisioterapia producto;
     private int cantidad;
-    
     private static final double IGV = 0.18;
-    
+
     public CVenta() {
+        super();
         this.dniCliente = "";
         this.producto = null;
         this.cantidad = 0;
     }
 
-    public CVenta(String dniCliente, CInsumoFisioterapia producto, int cantidad) {
+    public CVenta(String dniCliente, CInsumoFisioterapia producto, int cantidad, String fechaRegistro) {
+        super(fechaRegistro);
         setDniCliente(dniCliente);
         setProducto(producto);
         setCantidad(cantidad);
+        this.montoTotal = calcularTotal();
     }
 
-    public String getDniCliente() {
-        return dniCliente;
-    }
+    public String getDniCliente() { return dniCliente; }
 
     public void setDniCliente(String dniCliente) {
-        if (dniCliente != null && dniCliente.length() == 8) {
-            this.dniCliente = dniCliente;
-        } else {
+        if (dniCliente != null && dniCliente.length() == 8) this.dniCliente = dniCliente;
+        else {
             System.out.println("Error: El DNI debe tener 8 dígitos. Se asignará '00000000'.");
             this.dniCliente = "00000000";
         }
     }
 
-    public CInsumoFisioterapia getProducto() {
-        return producto;
-    }
-
+    public CInsumoFisioterapia getProducto() { return producto; }
     public void setProducto(CInsumoFisioterapia producto) {
-        if (producto != null) {
-            this.producto = producto;
-        } else {
-            System.out.println("Error: El producto no puede ser nulo.");
-        }
+        if (producto != null) this.producto = producto;
+        else System.out.println("Error: El producto no puede ser nulo.");
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
+    public int getCantidad() { return cantidad; }
     public void setCantidad(int cantidad) {
-        if (cantidad > 0) {
-            this.cantidad = cantidad;
-        } else {
+        if (cantidad > 0) this.cantidad = cantidad;
+        else {
             System.out.println("Error: La cantidad debe ser mayor a 0. Se asignará 1 por defecto.");
             this.cantidad = 1;
         }
     }
 
     public double calcularSubtotal() {
-        if (producto != null) {
-            return producto.getPrecio() * cantidad;
-        }
+        if (producto != null) return producto.getPrecio() * cantidad;
         return 0.0;
     }
 
-    public double calcularIgv() {
-        return calcularSubtotal() * IGV;
-    }
+    public double calcularIgv() { return calcularSubtotal() * IGV; }
 
-    public double calcularTotal() {
-        return calcularSubtotal() + calcularIgv();
-    }
+    @Override
+    public double calcularTotal() { return calcularSubtotal() + calcularIgv(); }
 
-    public void mostrarResumenVenta() {
+    @Override
+    public void mostrarResumen() {
         System.out.println("VENTA");
         System.out.println("DNI Cliente: " + dniCliente);
+        System.out.println("Fecha: " + fechaRegistro);
+        System.out.println("Estado: " + estado);
         if (producto != null) {
             System.out.println("Producto: " + producto.getNombre() + " (" + producto.getTipoInsumo() + ")");
             System.out.println("Precio Unitario: S/." + producto.getPrecio());
@@ -98,9 +84,9 @@ public class CVenta {
 
     @Override
     public String toString() {
-        return "Venta [DNI: " + dniCliente + 
-               " | Producto: " + (producto != null ? producto.getNombre() : "Ninguno") + 
-               " | Cantidad: " + cantidad + 
+        return "Venta [DNI: " + dniCliente +
+               " | Producto: " + (producto != null ? producto.getNombre() : "Ninguno") +
+               " | Cantidad: " + cantidad +
                " | Total: S/." + calcularTotal() + "]";
     }
 }
