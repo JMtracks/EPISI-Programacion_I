@@ -4,113 +4,62 @@
  */
 package jm_Class;
 
-/**
- *
- * @author Marlon Gallarday Lara
- */
-public class CPersonal {
-    
-     private String dni;
-    private String nombreCompleto;
+
+public class CPersonal extends CPersona {
     private String rol;
     private String usuario;
     private String contraseña;
     private String horarioDisponibilidad;
 
     public CPersonal() {
-        this.dni = dni;
-        this.nombreCompleto = nombreCompleto;
-        this.rol = rol;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.horarioDisponibilidad = horarioDisponibilidad;
+        super();
     }
-    public CPersonal(String dni, String nombreCompleto, String rol, String usuario, String contrasena, String horarioDisponibilidad) {
-        setDni(dni);
-        setNombreCompleto(nombreCompleto);
+
+    public CPersonal(String DNI, String nombre, int edad, String rol,
+                     String usuario, String contrasena, String horarioDisponibilidad) {
+        super(DNI, nombre, edad);
         setRol(rol);
         setUsuario(usuario);
-        setContraseña(contraseña);
+        setContraseña(contrasena);
         setHorarioDisponibilidad(horarioDisponibilidad);
     }
-    public CPersonal(String dni, String nombreCompleto, String rol) {
-        setDni(dni);
-        setNombreCompleto(nombreCompleto);
-        setRol(rol);
-     
-    }
-    public String getDni() {
-        return dni;
-    }
-    public void setDni(String dni) {
-        if (dni != null && dni.length() == 8) {
-            this.dni = dni;
-        } else {
-            throw new IllegalArgumentException(" El DNI debe tener exactamente 8 dígitos") ;
- 
-        }
-    }
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-    public void setNombreCompleto(String nombreCompleto) {
-        if (nombreCompleto != null && !nombreCompleto.trim().isEmpty()) {
-            this.nombreCompleto = nombreCompleto;
-        } else {
-             throw new IllegalArgumentException("invalido el nombre no puede estar vacío.");
-         }
-    }
-    public String getRol() {
-        return rol;
-    }
+
+    public String getRol() { return rol; }
+
     public void setRol(String rol) {
-            if (rol != null && (rol.equalsIgnoreCase("Fisioterapeuta") || rol.equalsIgnoreCase("Recepcionista"))) {
-            
-            if (rol.equalsIgnoreCase("Fisioterapeuta")) {
-                this.rol = "Fisioterapeuta";
-            } else {
-                this.rol = "Recepcionista";
-            }
+        if (rol != null && (rol.equalsIgnoreCase("Fisioterapeuta") || rol.equalsIgnoreCase("Recepcionista"))) {
+            this.rol = rol.equalsIgnoreCase("Fisioterapeuta") ? "Fisioterapeuta" : "Recepcionista";
         } else {
-            throw new IllegalArgumentException( "Rol inválido. Debe ser Fisioterapeuta o Recepcionista");
+            throw new IllegalArgumentException("Rol inválido. Debe ser Fisioterapeuta o Recepcionista");
         }
     }
-    public String getUsuario() {
-        return usuario;
-    }
+
+    public String getUsuario() { return usuario; }
     public void setUsuario(String usuario) {
-        if (usuario != null && !usuario.trim().isEmpty()) {
-            this.usuario = usuario;
-        } else {
-           throw new IllegalArgumentException("invalido el usuario no puede estar vacío.");
-                }
+        if (usuario != null && !usuario.trim().isEmpty()) this.usuario = usuario;
+        else throw new IllegalArgumentException("Usuario no puede estar vacío");
     }
-    public String getContraseña() {
-        return contraseña;
-    }
+
+    public String getContraseña() { return contraseña; }
     public void setContraseña(String contraseña) {
-               if (contraseña != null && contraseña.length() >= 6) {
-            this.contraseña = contraseña;
-        } else {
-            throw new IllegalArgumentException("invalido a contraseña debe tener al menos 6 caracteres.");
-        }
+        if (contraseña != null && contraseña.length() >= 6) this.contraseña = contraseña;
+        else throw new IllegalArgumentException("Contraseña debe tener al menos 6 caracteres");
     }
-    public String getHorarioDisponibilidad() {
-        return horarioDisponibilidad;
-    }
+
+    public String getHorarioDisponibilidad() { return horarioDisponibilidad; }
     public void setHorarioDisponibilidad(String horarioDisponibilidad) {
-        if (horarioDisponibilidad != null && !horarioDisponibilidad.trim().isEmpty()) {
+        if (horarioDisponibilidad != null && !horarioDisponibilidad.trim().isEmpty())
             this.horarioDisponibilidad = horarioDisponibilidad;
-        } else {
-            throw new IllegalArgumentException("invalido el horario no puede estar vacío.");
-                    }
+        else throw new IllegalArgumentException("Horario no puede estar vacío");
     }
+
     @Override
     public String toString() {
-             return "Personal [DNI: " + dni + 
-               " | Nombre: " + nombreCompleto + 
-               " | Rol: " + rol + 
-               " | Usuario: " + usuario + 
+        return "Personal [DNI: " + getDNI() +
+               " | Nombre: " + getNombre() +
+               " | Edad: " + getEdad() +
+               " | Rol: " + rol +
+               " | Usuario: " + usuario +
                " | Horario: " + horarioDisponibilidad + "]";
     }
 }

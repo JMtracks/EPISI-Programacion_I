@@ -3,25 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package jm_Class;
-
-/**
- * Clase Persona (CPersona)
- * @author JMTracks (Manrique Galvez Ernesto Joel)
- */
 public class CPersona {
-   private String DNI; //Debe ser anotado una sola vez. 
-   private String nombre;
-   private int edad;
-   private double saldo;
-   static int cnt;
-   final String DEFAULT_NAME = "No identifcado";
-   /**
-    * Crear una Persona
-    * @param DNI Anotas el DNI de la Persona
-    * @param nombre Nombre de la Persona
-    * @param edad Edad de la persona
-    * @param saldo Saldo de la persona
-    */
+    protected String DNI;
+    protected String nombre;
+    protected int edad;
+    protected double saldo;
+    static int cnt;
+    final String DEFAULT_NAME = "No identificado";
+
     public CPersona(String DNI, String nombre, int edad, double saldo) {
         setDNI(DNI);
         setEdad(edad);
@@ -29,6 +18,7 @@ public class CPersona {
         setSaldo(saldo);
         cnt++;
     }
+
     public CPersona(String DNI, String nombre, int edad) {
         setDNI(DNI);
         setEdad(edad);
@@ -36,6 +26,7 @@ public class CPersona {
         this.saldo = 0;
         cnt++;
     }
+
     public CPersona(String DNI, int edad) {
         this.nombre = DEFAULT_NAME;
         setDNI(DNI);
@@ -44,35 +35,50 @@ public class CPersona {
         cnt++;
     }
 
-    public String getDNI() {return DNI;}
-
-    public String getNombre() {return nombre;}
-
-    public void setNombre(String nombre) {
-        if(nombre.trim().isEmpty()) throw new IllegalArgumentException("Nombre Invalido");
-         this.nombre = nombre;}
-    private void setDNI(String DNI){
-       if(!DNI.matches("\\d{8}")) throw new IllegalArgumentException("DNI Invalido");
-       this.DNI = DNI;
+    public CPersona() {
+        this.DNI = "00000000";
+        this.nombre = DEFAULT_NAME;
+        this.edad = 0;
+        this.saldo = 0;
+        cnt++;
     }
 
-    public int getEdad() {return edad;}
+    public String getDNI() { return DNI; }
+    public String getNombre() { return nombre; }
+
+    public void setNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) throw new IllegalArgumentException("Nombre Inválido");
+        this.nombre = nombre;
+    }
+
+    protected void setDNI(String DNI) {
+        if (DNI == null || !DNI.matches("\\d{8}")) throw new IllegalArgumentException("DNI Inválido");
+        this.DNI = DNI;
+    }
+
+    public int getEdad() { return edad; }
 
     public void setEdad(int edad) {
-        if(edad <0 &&edad>119) throw new IllegalArgumentException("Edad incorrecta"); 
+        if (edad < 0 || edad > 119) throw new IllegalArgumentException("Edad incorrecta");
         this.edad = edad;
     }
 
-    public double getSaldo() {return saldo;}
+    public double getSaldo() { return saldo; }
 
-    private void setSaldo(double saldo) {
-        if(saldo<0) throw new IllegalArgumentException("Saldo Incorrecto");
+    public void setSaldo(double saldo) {
+        if (saldo < 0) throw new IllegalArgumentException("Saldo Incorrecto");
         this.saldo = saldo;
     }
 
     public static int getCnt() { return cnt; }
+
+    @Override
+    public String toString() {
+        return "Persona [DNI: " + DNI + " | Nombre: " + nombre +
+               " | Edad: " + edad + " | Saldo: S/." + saldo + "]";
+    }
+}
     
     
     
    
-}
