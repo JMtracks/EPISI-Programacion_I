@@ -11,69 +11,52 @@ import java.time.LocalDateTime;
  * Clase Cita (CCita)
  * @author JMTracks (Manrique Galvez Ernesto Joel)
  */
-public class CCita {
-    public class Cita {
+public class CCita extends CTransaccion {
     private String idCita;
     private LocalDate fecha;
     private LocalDateTime hora;
-    private String tipoCita; 
-    private String estado;
+    private String tipoCita;
 
-        public Cita(String idCita, LocalDate fecha, LocalDateTime hora, String tipoCita) {
-            setIdCita(idCita);
-            setFecha(fecha);
-            setHora(hora);
-            setTipoCita(tipoCita);
-            this.estado = "En Reserva";
-        }
-
-    public void confirmarCita() {this.estado = "Completada";}
-    
-    public void cancelarCita(LocalDate FechaActual){
-        if(FechaActual.isBefore(fecha)) this.estado = "Ausente";
+    public CCita() {
+        super();
+        this.estado = "En Reserva";
     }
-    public void cancelarCita(){
-        this.estado = "Ausente";
+
+    public CCita(String idCita, LocalDate fecha, LocalDateTime hora, String tipoCita, String fechaRegistro) {
+        super(fechaRegistro);
+        setIdCita(idCita);
+        setFecha(fecha);
+        setHora(hora);
+        setTipoCita(tipoCita);
+        this.estado = "En Reserva";
     }
-    
-        public String getIdCita() {
-            return idCita;
-        }
 
-        public void setIdCita(String idCita) {
-            this.idCita = idCita;
-        }
+    public void confirmarCita() { this.estado = "Completada"; }
 
-        public LocalDate getFecha() {
-            return fecha;
-        }
+    public void cancelarCita(LocalDate fechaActual) {
+        if (fechaActual.isBefore(fecha)) this.estado = "Ausente";
+    }
 
-        public void setFecha(LocalDate fecha) {
-            this.fecha = fecha;
-        }
+    public void cancelarCita() { this.estado = "Ausente"; }
 
-        public LocalDateTime getHora() {
-            return hora;
-        }
+    public String getIdCita() { return idCita; }
+    public void setIdCita(String idCita) { this.idCita = idCita; }
 
-        public void setHora(LocalDateTime hora) {
-            this.hora = hora;
-        }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 
-        public String getTipoCita() {
-            return tipoCita;
-        }
+    public LocalDateTime getHora() { return hora; }
+    public void setHora(LocalDateTime hora) { this.hora = hora; }
 
-        public void setTipoCita(String tipoCita) {
-            this.tipoCita = tipoCita;
-        }
+    public String getTipoCita() { return tipoCita; }
+    public void setTipoCita(String tipoCita) { this.tipoCita = tipoCita; }
 
-        public String getEstado() {
-            return estado;
-        }
-
-        public void setEstado(String estado) {
-            this.estado = estado;
-        }
+    @Override
+    public String toString() {
+        return "Cita [ID: " + idCita +
+               " | Fecha: " + fecha +
+               " | Hora: " + hora +
+               " | Tipo: " + tipoCita +
+               " | Estado: " + estado + "]";
     }
 }
