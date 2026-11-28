@@ -10,6 +10,7 @@ public class CSesionTerapia extends CTransaccion {
     private String tipoTratamiento;
     private String observaciones;
     private String diagnostico;
+    private CFisioterapeuta fisioterapeuta; // ASOCIACIÓN
 
     public CSesionTerapia() {
         super();
@@ -17,13 +18,14 @@ public class CSesionTerapia extends CTransaccion {
 
     public CSesionTerapia(String codigoSesion, int duracionMinutos,
                            String tipoTratamiento, String observaciones, String diagnostico,
-                           String fechaRegistro) {
+                           String fechaRegistro, CFisioterapeuta fisioterapeuta) {
         super(fechaRegistro);
         this.codigoSesion = codigoSesion;
         this.duracionMinutos = duracionMinutos;
         this.tipoTratamiento = tipoTratamiento;
         this.observaciones = observaciones;
         this.diagnostico = diagnostico;
+        this.fisioterapeuta = fisioterapeuta;
         this.montoTotal = calcularTotal();
     }
 
@@ -42,10 +44,11 @@ public class CSesionTerapia extends CTransaccion {
     public String getDiagnostico() { return diagnostico; }
     public void setDiagnostico(String diagnostico) { this.diagnostico = diagnostico; }
 
+    public CFisioterapeuta getFisioterapeuta() { return fisioterapeuta; }
+    public void setFisioterapeuta(CFisioterapeuta fisioterapeuta) { this.fisioterapeuta = fisioterapeuta; }
+
     @Override
-    public double calcularTotal() {
-        return duracionMinutos * 2.5;
-    }
+    public double calcularTotal() { return duracionMinutos * 2.5; }
 
     @Override
     public void mostrarResumen() {
@@ -54,6 +57,7 @@ public class CSesionTerapia extends CTransaccion {
         System.out.println("Fecha: " + fechaRegistro);
         System.out.println("Duración: " + duracionMinutos + " min");
         System.out.println("Tratamiento: " + tipoTratamiento);
+        System.out.println("Fisioterapeuta: " + (fisioterapeuta != null ? fisioterapeuta.getNombre() : "Sin asignar"));
         System.out.println("Costo: S/." + calcularTotal());
     }
 }

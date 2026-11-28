@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package jm_Class;
-
+/**
+ *
+ * @author Marlon Gallarday Lara
+ */
 
 public class CPersonal extends CPersona {
     private String rol;

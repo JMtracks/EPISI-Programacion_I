@@ -4,12 +4,16 @@ package jm_Class;
  *
  * @author USer
  */
+import java.util.ArrayList;
+import java.util.List;
+
 public class CHistorialClinico {
     private String codigoHistorial;
     private String fechaApertura;
     private String observacionesGenerales;
     private String diagnostico;
     private String tratamiento;
+    private List<CSesionTerapia> sesiones; // AGREGACIÓN
 
     public CHistorialClinico() {
         this.codigoHistorial = "";
@@ -17,6 +21,7 @@ public class CHistorialClinico {
         this.observacionesGenerales = "";
         this.diagnostico = "";
         this.tratamiento = "";
+        this.sesiones = new ArrayList<>();
     }
 
     public CHistorialClinico(String codigoHistorial, String fechaApertura) {
@@ -25,6 +30,7 @@ public class CHistorialClinico {
         this.observacionesGenerales = "";
         this.diagnostico = "";
         this.tratamiento = "";
+        this.sesiones = new ArrayList<>();
     }
 
     public CHistorialClinico(String codigoHistorial, String fechaApertura,
@@ -34,6 +40,7 @@ public class CHistorialClinico {
         setObservacionesGenerales(observacionesGenerales);
         setDiagnostico(diagnostico);
         setTratamiento(tratamiento);
+        this.sesiones = new ArrayList<>();
     }
 
     public String getCodigoHistorial() { return codigoHistorial; }
@@ -69,6 +76,12 @@ public class CHistorialClinico {
         if (tratamiento == null)
             throw new IllegalArgumentException("Tratamiento no puede ser nulo");
         this.tratamiento = tratamiento;
+    }
+
+    public List<CSesionTerapia> getSesiones() { return sesiones; }
+    public void agregarSesion(CSesionTerapia sesion) {
+        if (sesion == null) throw new IllegalArgumentException("Sesión no puede ser nula");
+        this.sesiones.add(sesion);
     }
 
     private boolean esFechaValida(String fecha) {
@@ -123,6 +136,7 @@ public class CHistorialClinico {
                " | Apertura: " + fechaApertura +
                " | Diagnóstico: " + diagnostico +
                " | Tratamiento: " + tratamiento +
-               " | Observaciones: " + observacionesGenerales + "]";
+               " | Observaciones: " + observacionesGenerales +
+               " | Sesiones: " + sesiones.size() + "]";
     }
 }

@@ -13,9 +13,11 @@ public class CPaciente extends CPersona {
     private String razon_consulta;
     private int n_atenciones;
     private LocalDate fecha_atencion;
+    private CHistorialClinico historial; // COMPOSICIÓN
 
     public CPaciente() {
         super();
+        this.historial = new CHistorialClinico(); // Se crea junto con el paciente
         total_pacientes++;
     }
 
@@ -26,6 +28,7 @@ public class CPaciente extends CPersona {
         this.razon_consulta = razon_consulta;
         this.n_atenciones = n_atenciones;
         this.fecha_atencion = fecha_atencion;
+        this.historial = new CHistorialClinico(); // COMPOSICIÓN
         total_pacientes++;
     }
 
@@ -46,6 +49,9 @@ public class CPaciente extends CPersona {
 
     public LocalDate getFecha_atencion() { return fecha_atencion; }
     public void setFecha_atencion(LocalDate fecha_atencion) { this.fecha_atencion = fecha_atencion; }
+
+    public CHistorialClinico getHistorial() { return historial; }
+    public void setHistorial(CHistorialClinico historial) { this.historial = historial; }
 
     @Override
     public String toString() {
