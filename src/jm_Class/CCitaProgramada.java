@@ -16,9 +16,10 @@ public class CCitaProgramada extends CCita {
     }
 
     public CCitaProgramada(String idCita, LocalDate fecha, LocalDateTime hora,
-                            String tipoCita, String fechaRegistro,
-                            String fechaReserva) {
-        super(idCita, fecha, hora, tipoCita, fechaRegistro);
+                           String tipoCita, String fechaRegistro,
+                           CPaciente paciente, CFisioterapeuta fisioterapeuta,
+                           String fechaReserva) {
+        super(idCita, fecha, hora, tipoCita, fechaRegistro, paciente, fisioterapeuta);
         this.fechaReserva = fechaReserva;
         this.recordatorioEnviado = false;
     }

@@ -19,9 +19,10 @@ public class CCitaInmediata extends CCita {
     }
 
     public CCitaInmediata(String idCita, LocalDate fecha, LocalDateTime hora,
-                           String tipoCita, String fechaRegistro,
-                           int ordenLlegada, double recargoUrgencia) {
-        super(idCita, fecha, hora, tipoCita, fechaRegistro);
+                          String tipoCita, String fechaRegistro,
+                          CPaciente paciente, CFisioterapeuta fisioterapeuta,
+                          int ordenLlegada, double recargoUrgencia) {
+        super(idCita, fecha, hora, tipoCita, fechaRegistro, paciente, fisioterapeuta);
         this.ordenLlegada = ordenLlegada;
         this.recargoUrgencia = recargoUrgencia;
     }
