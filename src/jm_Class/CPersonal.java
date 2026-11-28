@@ -8,14 +8,19 @@ package jm_Class;
  * @author Marlon Gallarday Lara
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CPersonal extends CPersona {
     private String rol;
     private String usuario;
     private String contraseña;
     private String horarioDisponibilidad;
+    private List<CHorario> horarios; // COMPOSICIÓN
 
     public CPersonal() {
         super();
+        this.horarios = new ArrayList<>();
     }
 
     public CPersonal(String DNI, String nombre, int edad, String rol,
@@ -25,6 +30,7 @@ public class CPersonal extends CPersona {
         setUsuario(usuario);
         setContraseña(contrasena);
         setHorarioDisponibilidad(horarioDisponibilidad);
+        this.horarios = new ArrayList<>();
     }
 
     public String getRol() { return rol; }
@@ -56,6 +62,12 @@ public class CPersonal extends CPersona {
         else throw new IllegalArgumentException("Horario no puede estar vacío");
     }
 
+    public List<CHorario> getHorarios() { return horarios; }
+    public void agregarHorario(CHorario horario) {
+        if (horario == null) throw new IllegalArgumentException("Horario no puede ser nulo");
+        this.horarios.add(horario);
+    }
+
     @Override
     public String toString() {
         return "Personal [DNI: " + getDNI() +
@@ -63,6 +75,7 @@ public class CPersonal extends CPersona {
                " | Edad: " + getEdad() +
                " | Rol: " + rol +
                " | Usuario: " + usuario +
-               " | Horario: " + horarioDisponibilidad + "]";
+               " | Horario: " + horarioDisponibilidad +
+               " | Bloques horarios: " + horarios.size() + "]";
     }
 }

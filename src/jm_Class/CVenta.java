@@ -9,38 +9,31 @@ package jm_Class;
  * @author LIDIA
  */
 public class CVenta extends CTransaccion {
-    private String dniCliente;
-    private CInsumoFisioterapia producto;
+    private CPaciente paciente; // ASOCIACIÓN
+    private CProducto producto; // AGREGACIÓN
     private int cantidad;
     private static final double IGV = 0.18;
 
     public CVenta() {
         super();
-        this.dniCliente = "";
+        this.paciente = null;
         this.producto = null;
         this.cantidad = 0;
     }
 
-    public CVenta(String dniCliente, CInsumoFisioterapia producto, int cantidad, String fechaRegistro) {
+    public CVenta(CPaciente paciente, CProducto producto, int cantidad, String fechaRegistro) {
         super(fechaRegistro);
-        setDniCliente(dniCliente);
+        this.paciente = paciente;
         setProducto(producto);
         setCantidad(cantidad);
         this.montoTotal = calcularTotal();
     }
 
-    public String getDniCliente() { return dniCliente; }
+    public CPaciente getPaciente() { return paciente; }
+    public void setPaciente(CPaciente paciente) { this.paciente = paciente; }
 
-    public void setDniCliente(String dniCliente) {
-        if (dniCliente != null && dniCliente.length() == 8) this.dniCliente = dniCliente;
-        else {
-            System.out.println("Error: El DNI debe tener 8 dígitos. Se asignará '00000000'.");
-            this.dniCliente = "00000000";
-        }
-    }
-
-    public CInsumoFisioterapia getProducto() { return producto; }
-    public void setProducto(CInsumoFisioterapia producto) {
+    public CProducto getProducto() { return producto; }
+    public void setProducto(CProducto producto) {
         if (producto != null) this.producto = producto;
         else System.out.println("Error: El producto no puede ser nulo.");
     }
@@ -67,11 +60,11 @@ public class CVenta extends CTransaccion {
     @Override
     public void mostrarResumen() {
         System.out.println("VENTA");
-        System.out.println("DNI Cliente: " + dniCliente);
+        System.out.println("Cliente: " + (paciente != null ? paciente.getNombre() : "Sin asignar"));
         System.out.println("Fecha: " + fechaRegistro);
         System.out.println("Estado: " + estado);
         if (producto != null) {
-            System.out.println("Producto: " + producto.getNombre() + " (" + producto.getTipoInsumo() + ")");
+            System.out.println("Producto: " + producto.getNombre() + " (" + producto.getCategoria() + ")");
             System.out.println("Precio Unitario: S/." + producto.getPrecio());
         } else {
             System.out.println("Producto: No asignado");
@@ -84,7 +77,7 @@ public class CVenta extends CTransaccion {
 
     @Override
     public String toString() {
-        return "Venta [DNI: " + dniCliente +
+        return "Venta [Cliente: " + (paciente != null ? paciente.getNombre() : "Ninguno") +
                " | Producto: " + (producto != null ? producto.getNombre() : "Ninguno") +
                " | Cantidad: " + cantidad +
                " | Total: S/." + calcularTotal() + "]";

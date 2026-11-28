@@ -8,15 +8,20 @@ package jm_Class;
  *
  * @author RAMOS VILCHEZ VICTOR MIGUEL
  */
+import java.util.ArrayList;
+import java.util.List;
+
 public class CFisioterapeuta extends CPersonal {
     private String codigo_fisioterapeuta;
     private String especialidad;
     private int sesiones_realizadas;
     private int pacientes_en_agenda;
     private boolean disponible;
+    private List<CPaciente> pacientes; // AGREGACIÓN
 
     public CFisioterapeuta() {
         super();
+        this.pacientes = new ArrayList<>();
     }
 
     public CFisioterapeuta(String DNI, String nombre, int edad, String usuario, String contrasena,
@@ -28,6 +33,7 @@ public class CFisioterapeuta extends CPersonal {
         this.sesiones_realizadas = sesiones_realizadas;
         this.pacientes_en_agenda = pacientes_en_agenda;
         this.disponible = true;
+        this.pacientes = new ArrayList<>();
     }
 
     public String getCodigo_fisioterapeuta() { return codigo_fisioterapeuta; }
@@ -45,12 +51,19 @@ public class CFisioterapeuta extends CPersonal {
     public boolean isDisponible() { return disponible; }
     public void setDisponible(boolean disponible) { this.disponible = disponible; }
 
+    public List<CPaciente> getPacientes() { return pacientes; }
+    public void agregarPaciente(CPaciente paciente) {
+        if (paciente == null) throw new IllegalArgumentException("Paciente no puede ser nulo");
+        this.pacientes.add(paciente);
+    }
+
     @Override
     public String toString() {
         return "Fisioterapeuta [Código: " + codigo_fisioterapeuta +
                " | Nombre: " + getNombre() +
                " | Especialidad: " + especialidad +
                " | Sesiones: " + sesiones_realizadas +
-               " | Pacientes en agenda: " + pacientes_en_agenda + "]";
+               " | Pacientes en agenda: " + pacientes_en_agenda +
+               " | Pacientes asignados: " + pacientes.size() + "]";
     }
 }
